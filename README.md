@@ -32,7 +32,3 @@ Phase 1 includes authentication, user roles & permissions (PBAC), 1-to-1 & group
 - File uploads (images, docs) attached to messages
 - Ownership guards for message & attachment editing/deleting
 - React.js client for basic chat interface
-
----
-
-## Project Structure
