@@ -4,11 +4,14 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryColumn,
 } from 'typeorm';
 import { User } from './users.entity';
 import { Chat } from './chats.entity';
+import { Permission } from './permissions.entity';
 
 @Entity({ name: 'chat-participants' })
 export class ChatParticipant {
@@ -23,6 +26,10 @@ export class ChatParticipant {
 
   @DeleteDateColumn()
   leavesAt: Date;
+
+  @ManyToMany(() => Permission)
+  @JoinTable()
+  userPermissions: Permission[];
 
   @ManyToOne(() => User, (user) => user.chatConnections)
   user: User;

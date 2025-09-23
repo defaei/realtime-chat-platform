@@ -69,11 +69,11 @@ export class UsersSeeder {
         password: CustomBcrypt.hashString('jack123456'),
       },
     ]);
-    console.log('users seeded');
+    console.log('✅ users seeded');
   }
 
   static async down(dataSource: DataSource) {
     await dataSource.query(`TRUNCATE TABLE "users" RESTART IDENTITY CASCADE`);
-    console.log('users removed');
+    console.log('✅ users removed');
   }
 }
