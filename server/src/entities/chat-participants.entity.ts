@@ -5,14 +5,14 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { User } from './users.entity';
 import { Chat } from './chats.entity';
 
 @Entity({ name: 'chat-participants' })
 export class ChatParticipant {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn()
   id: string;
 
   @Column({ type: 'enum', enum: ChatRoleEnum, default: ChatRoleEnum.Member })

@@ -5,7 +5,7 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Attachment } from './attachments.entity';
@@ -14,7 +14,7 @@ import { Chat } from './chats.entity';
 
 @Entity({ name: 'messages' })
 export class Message {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn()
   id: string;
 
   @Column({ nullable: true })
