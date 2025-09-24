@@ -6,13 +6,15 @@ import {
   JoinTable,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Permission } from './permissions.entity';
 import { Message } from './messages.entity';
-import { ChatParticipant } from './chat-participants.entity';
 import { Chat } from './chats.entity';
+import { Membership } from './memberships.entity';
+import { Profile } from './profiles.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -28,18 +30,17 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
-  @ManyToMany(() => Permission)
-  @JoinTable()
-  permissions: Permission[];
-
-  @OneToMany(() => ChatParticipant, (chatParticipant) => chatParticipant.user)
-  chatConnections: ChatParticipant[];
+  @OneToMany(() => Membership, (membership) => membership.user)
+  memberships: Membership[];
 
   @OneToMany(() => Message, (message) => message.sender)
   messages: Message[];
 
   @OneToMany(() => Chat, (chat) => chat.owner)
   ownedChats: Chat[];
+
+  @OneToOne(() => Profile, (profile) => profile.user)
+  profile: Profile;
 
   @CreateDateColumn()
   createdAt: Date;

@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from './users.entity';
-import { ChatParticipant } from './chat-participants.entity';
+import { Membership } from './memberships.entity';
 import { Message } from './messages.entity';
 
 @Entity({ name: 'chats' })
@@ -23,8 +23,8 @@ export class Chat {
   @Column({ default: false })
   isGroup: boolean;
 
-  @OneToMany(() => ChatParticipant, (cp) => cp.chat)
-  participants: ChatParticipant[];
+  @OneToMany(() => Membership, (membership) => membership.chat)
+  memberships: Membership[];
 
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];

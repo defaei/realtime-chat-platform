@@ -1,5 +1,4 @@
 import { Permission } from 'src/entities/permissions.entity';
-import { User } from 'src/entities/users.entity';
 import { CustomUuid } from 'src/utilities/uuid';
 import { DataSource } from 'typeorm';
 
@@ -18,7 +17,7 @@ export class PermissionsSeeder {
 
   static async down(dataSource: DataSource) {
     await dataSource.query(
-      `TRUNCATE TABLE "permissions" RESTART IDENTITY CASCADE`,
+      `TRUNCATE TABLE "chatPermissions" RESTART IDENTITY CASCADE`,
     );
     console.log('✅ permissions removed');
   }
