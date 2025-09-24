@@ -3,14 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Permission } from './chatPermissions.entity';
 import { Message } from './messages.entity';
 import { Chat } from './chats.entity';
 import { Membership } from './memberships.entity';
