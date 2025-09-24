@@ -1,5 +1,5 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
-import { Permission } from './permissions.entity';
+import { ChatPermission } from './chatPermissions.entity';
 import { Membership } from './memberships.entity';
 
 @Entity({ name: 'memberships_permissions' })
@@ -10,19 +10,11 @@ export class MembershipsPermissions {
   @PrimaryColumn()
   permissionId: string;
 
-  @ManyToOne(
-    () => Membership,
-    (membership) => membership.membershipPermissions,
-    { onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => Membership, (membership) => membership.permissions)
   @JoinColumn({ name: 'membershipId' })
   membership: Membership;
 
-  @ManyToOne(
-    () => Permission,
-    (permission) => permission.membershipPermissions,
-    { onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => ChatPermission, (cp) => cp.memberships)
   @JoinColumn({ name: 'permissionId' })
-  permission: Permission;
+  permission: ChatPermission;
 }

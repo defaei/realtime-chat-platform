@@ -1,4 +1,4 @@
-import { Permission } from 'src/entities/permissions.entity';
+import { Permission } from 'src/entities/chatPermissions.entity';
 import { CustomUuid } from 'src/utilities/uuid';
 import { DataSource } from 'typeorm';
 

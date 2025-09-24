@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Message } from './messages.entity';
 
 @Entity({ name: 'attachments' })
@@ -12,6 +12,10 @@ export class Attachment {
   @Column({ nullable: false })
   fileSize: number;
 
+  @Column({ nullable: false })
+  messageId: string;
+
   @ManyToOne(() => Message, (message) => message.attachments)
-  belongsTo: Message;
+  @JoinColumn({ name: 'messageId', referencedColumnName: 'id' })
+  message: Message;
 }

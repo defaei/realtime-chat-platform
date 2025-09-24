@@ -10,11 +10,12 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Permission } from './permissions.entity';
+import { Permission } from './chatPermissions.entity';
 import { Message } from './messages.entity';
 import { Chat } from './chats.entity';
 import { Membership } from './memberships.entity';
 import { Profile } from './profiles.entity';
+import { Otp } from './otps.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -27,9 +28,6 @@ export class User {
   @Column({ nullable: true, unique: true })
   email: string;
 
-  @Column({ nullable: false })
-  password: string;
-
   @OneToMany(() => Membership, (membership) => membership.user)
   memberships: Membership[];
 
@@ -38,6 +36,9 @@ export class User {
 
   @OneToMany(() => Chat, (chat) => chat.owner)
   ownedChats: Chat[];
+
+  @OneToMany(() => Otp, (otp) => otp.user)
+  otps: Otp[];
 
   @OneToOne(() => Profile, (profile) => profile.user)
   profile: Profile;

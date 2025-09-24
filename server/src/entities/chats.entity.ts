@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryColumn,
@@ -17,7 +18,11 @@ export class Chat {
   @PrimaryColumn()
   id: string;
 
+  @Column({ nullable: true })
+  ownerId: string;
+
   @ManyToOne(() => User)
+  @JoinColumn({ name: 'ownerId', referencedColumnName: 'id' })
   owner: User;
 
   @Column({ default: false })

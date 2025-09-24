@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryColumn,
@@ -21,15 +22,21 @@ export class Message {
   content: string;
 
   @ManyToOne(() => User, (user) => user.messages)
+  @JoinColumn({ name: 'senderId', referencedColumnName: 'id' })
   sender: User;
 
-  @OneToMany(() => Attachment, (attachment) => attachment.belongsTo)
+  @OneToMany(() => Attachment, (attachment) => attachment.message)
   attachments: Attachment[];
 
   @ManyToOne(() => Chat, (chat) => chat.messages)
+  @JoinColumn({ name: 'chatId', referencedColumnName: 'id' })
   chat: Chat;
 
+  @Column({ nullable: true })
+  parentMessageId: string;
+
   @ManyToOne(() => Message, (message) => message.replies, { nullable: true })
+  @JoinColumn({ name: 'parentMessageId', referencedColumnName: 'id' })
   parentMessage: Message;
 
   @OneToMany(() => Message, (message) => message.parentMessage)

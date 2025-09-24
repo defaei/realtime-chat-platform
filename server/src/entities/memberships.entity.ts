@@ -21,8 +21,8 @@ export class Membership {
   @DeleteDateColumn()
   leftAt: Date;
 
-  @OneToMany(() => MembershipsPermissions, (mp) => mp.membershipId)
-  membershipPermissions: MembershipsPermissions[];
+  @OneToMany(() => MembershipsPermissions, (mp) => mp.membership)
+  permissions: MembershipsPermissions[];
 
   @ManyToOne(() => User, (user) => user.memberships)
   user: User;
