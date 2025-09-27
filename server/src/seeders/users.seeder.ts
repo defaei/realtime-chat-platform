@@ -1,5 +1,4 @@
 import { User } from 'src/entities/users.entity';
-import { CustomBcrypt } from 'src/utilities/bcrypt';
 import { CustomUuid } from 'src/utilities/uuid';
 import { DataSource } from 'typeorm';
 
@@ -25,7 +24,6 @@ export class UsersSeeder {
         id: CustomUuid.generateUuid(),
         username: name,
         email: `${name}@gmail.com`,
-        password: CustomBcrypt.hashString(`${name}123456`),
       })),
     );
     console.log('✅ users seeded');

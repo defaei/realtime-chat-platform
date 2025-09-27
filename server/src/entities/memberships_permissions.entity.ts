@@ -11,10 +11,10 @@ export class MembershipsPermissions {
   permissionId: string;
 
   @ManyToOne(() => Membership, (membership) => membership.permissions)
-  @JoinColumn({ name: 'membershipId' })
+  @JoinColumn({ name: 'membershipId', referencedColumnName: 'id' })
   membership: Membership;
 
   @ManyToOne(() => ChatPermission, (cp) => cp.memberships)
-  @JoinColumn({ name: 'permissionId' })
+  @JoinColumn({ name: 'permissionId', referencedColumnName: 'id' })
   permission: ChatPermission;
 }

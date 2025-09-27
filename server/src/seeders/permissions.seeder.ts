@@ -1,17 +1,27 @@
-import { Permission } from 'src/entities/chatPermissions.entity';
+import { ChatPermission } from 'src/entities/chatPermissions.entity';
 import { CustomUuid } from 'src/utilities/uuid';
 import { DataSource } from 'typeorm';
 
+const permissions = [
+  'READ_MESSAGES',
+  'SEND_MESSAGES',
+  'EDIT_MESSAGES',
+  'DELETE_MESSAGES',
+  'ADD_MEMBERS',
+  'SEND_ATTACHMENTS',
+  'KICK_MEMBERS',
+];
+
 export class PermissionsSeeder {
   static async up(dataSource: DataSource) {
-    const permissionRepo = dataSource.getRepository(Permission);
+    const permissionRepo = dataSource.getRepository(ChatPermission);
 
-    await permissionRepo.insert([
-      { id: CustomUuid.generateUuid(), name: 'ADMIN' },
-      { id: CustomUuid.generateUuid(), name: 'MODERATORS' },
-      { id: CustomUuid.generateUuid(), name: 'PREMIUM' },
-      { id: CustomUuid.generateUuid(), name: 'NORMAL' },
-    ]);
+    await permissionRepo.insert(
+      permissions.map((permission) => ({
+        id: CustomUuid.generateUuid(),
+        name: permission,
+      })),
+    );
     console.log('✅ permissions seeded');
   }
 

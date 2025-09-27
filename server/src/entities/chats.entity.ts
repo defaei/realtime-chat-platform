@@ -21,18 +21,8 @@ export class Chat {
   @Column({ nullable: true })
   ownerId: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'ownerId', referencedColumnName: 'id' })
-  owner: User;
-
   @Column({ default: false })
   isGroup: boolean;
-
-  @OneToMany(() => Membership, (membership) => membership.chat)
-  memberships: Membership[];
-
-  @OneToMany(() => Message, (message) => message.chat)
-  messages: Message[];
 
   @CreateDateColumn()
   createdAt: Date;
@@ -42,4 +32,14 @@ export class Chat {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'ownerId', referencedColumnName: 'id' })
+  owner: User;
+
+  @OneToMany(() => Membership, (membership) => membership.chat)
+  memberships: Membership[];
+
+  @OneToMany(() => Message, (message) => message.chat)
+  messages: Message[];
 }

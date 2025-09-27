@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { MembershipsPermissions } from './memberships_permissions.entity';
 
-@Entity({ name: 'permissions' })
+@Entity({ name: 'chatPermissions' })
 export class ChatPermission {
   @PrimaryColumn()
   id: string;

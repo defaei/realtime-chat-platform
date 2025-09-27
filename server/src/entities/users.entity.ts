@@ -25,6 +25,15 @@ export class User {
   @Column({ nullable: true, unique: true })
   email: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
+
   @OneToMany(() => Membership, (membership) => membership.user)
   memberships: Membership[];
 
@@ -39,13 +48,4 @@ export class User {
 
   @OneToOne(() => Profile, (profile) => profile.user)
   profile: Profile;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }
