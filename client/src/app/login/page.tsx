@@ -13,19 +13,26 @@ export default function LoginPage(): React.ReactNode {
   }, []);
 
   return (
-    <main className="w-full h-screen bg-bg flex flex-col items-center 2xl:flex-row 2xl:justify-center 2xl:items-start">
-      <div className="hidden 2xl:flex justify-center items-center bg-green-200 w-[100%] h-full relative">
-        <Image src="/static_images/login.jpg" alt="image" layout="fill" className="object-cover w-full h-full" />
+    <main className="w-full h-screen bg-bg flex flex-col items-center 2xl:flex-row-reverse 2xl:justify-center 2xl:items-start">
+      <div className="hidden 2xl:flex justify-center items-center w-[100%] h-full relative">
+        <Image
+          src="/static_images/login.jpg"
+          alt="image"
+          layout="fill"
+          className="object-cover w-full h-full"
+        />
       </div>
 
-      <div
-        className={`w-full max-w-[470px] h-full max-h-full flex flex-col 2xl:mx-[5%] 3xl:mx-[10%] 4xl:max-w-[600px] pt-[15vh] pb-[5vh] duration-500 items-center justify-between`}
-      >
+      <form className="w-full max-w-[470px] h-full max-h-full flex flex-col 2xl:mx-[5%] 3xl:mx-[10%] 4xl:max-w-[600px] pt-[15vh] pb-[5vh] duration-500 items-center justify-between">
         <div className="w-full flex flex-col items-center gap-y-6 px-4">
           <div className="w-full flex flex-col items-center">
             <h1 className="text-7xl mb-5">📭</h1>
-            <h1 className="text-4xl text-white mb-3 font-semibold">Your Email</h1>
-            <h3 className="text-xl text-white">Please enter your email address.</h3>
+            <h1 className="text-4xl text-white mb-3 font-semibold">
+              Your Email
+            </h1>
+            <h3 className="text-xl text-white">
+              Please enter your email address.
+            </h3>
           </div>
 
           <input
@@ -51,7 +58,7 @@ export default function LoginPage(): React.ReactNode {
         >
           Continue
         </button>
-      </div>
+      </form>
     </main>
   );
 }
