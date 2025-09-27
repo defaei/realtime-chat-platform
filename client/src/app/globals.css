@@ -20,3 +20,7 @@
   --color-success: #454545;
   --color-danger: #454545;
 }
+
+body {
+  overflow: hidden;
+}
