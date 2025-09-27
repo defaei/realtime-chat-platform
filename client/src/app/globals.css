@@ -10,5 +10,13 @@
   --breakpoint-3xl: 1250px;
   --breakpoint-4xl: 1500px;
   --breakpoint-5xl: 1750px;
-  --color-bg-default: oklch(21% 0.034 264.665);
+  --color-bg: #000;
+  --color-surface: #821303;
+  --color-text: #821303;
+  --color-accent: #454545;
+  --color-muted: #454545;
+  --color-placeholder: #454545;
+  --color-border: #141414;
+  --color-success: #454545;
+  --color-danger: #454545;
 }
