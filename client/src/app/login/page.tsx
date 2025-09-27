@@ -1,12 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import MinionPicture from "./minion.jpg";
+
+export function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState<boolean>(() =>
+    typeof window === "undefined" ? false : window.matchMedia(query).matches
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
+
+    if (mql.addEventListener) mql.addEventListener("change", handler);
+    else mql.addListener(handler);
+
+    setMatches(mql.matches);
+
+    return () => {
+      if (mql.removeEventListener) mql.removeEventListener("change", handler);
+      else mql.removeListener(handler);
+    };
+  }, [query]);
+
+  return matches;
+}
 
 export default function LoginPage(): React.ReactNode {
   const [email, setEmail] = useState("");
 
+  let xlBreakPointSize;
+  if (typeof window !== "undefined")
+    xlBreakPointSize = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--breakpoint-xl");
+
+  const isLarge = useMediaQuery(`(min-width: ${xlBreakPointSize})`);
+
   return (
-    <main className="w-full min-h-screen bg-bg flex flex-col items-center">
+    <main className="w-full min-h-screen bg-bg flex flex-col items-center xl:w-full">
+      {isLarge && (
+        <Image src={MinionPicture} alt="image" width={500} height={500} />
+      )}
       <div className="w-full max-w-md mx-auto flex flex-col items-center gap-y-6 px-4 pt-20">
         <div className="w-full flex flex-col items-center">
           <h1 className="text-7xl mb-5">📭</h1>
