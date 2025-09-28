@@ -1,7 +1,7 @@
 import { Chat } from "src/entities/chats.entity";
 import { Membership } from "src/entities/memberships.entity";
 import { User } from "src/entities/users.entity";
-import { CustomPublicHelpers } from "src/helpers/public";
+import { CustomPublicHelpers } from "src/helpers/arrays";
 import { CustomUuid } from "src/utilities/uuid";
 import { DataSource } from "typeorm";
 

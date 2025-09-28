@@ -4,9 +4,7 @@ export class CustomPublicHelpers {
     const sortedFirstArray = [...firstArray].sort();
     const sortedSecondArray = [...secondArray].sort();
 
-    return sortedFirstArray.every(
-      (value, index) => value === sortedSecondArray[index],
-    );
+    return sortedFirstArray.every((value, index) => value === sortedSecondArray[index]);
   }
 
   static isArrayHasDuplicatedValue(array: any[]): boolean {
