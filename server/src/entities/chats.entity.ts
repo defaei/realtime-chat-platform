@@ -6,12 +6,14 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from './users.entity';
 import { Membership } from './memberships.entity';
 import { Message } from './messages.entity';
+import { GroupProfile } from './groupProfiles.entity';
 
 @Entity({ name: 'chats' })
 export class Chat {
@@ -42,4 +44,7 @@ export class Chat {
 
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];
+
+  @OneToOne(() => GroupProfile, (gp) => gp.chat)
+  profile: GroupProfile;
 }
