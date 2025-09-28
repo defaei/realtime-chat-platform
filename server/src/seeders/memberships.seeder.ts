@@ -1,9 +1,9 @@
-import { Chat } from 'src/entities/chats.entity';
-import { Membership } from 'src/entities/memberships.entity';
-import { User } from 'src/entities/users.entity';
-import { CustomPublicHelpers } from 'src/utilities/helpers/public';
-import { CustomUuid } from 'src/utilities/uuid';
-import { DataSource } from 'typeorm';
+import { Chat } from "src/entities/chats.entity";
+import { Membership } from "src/entities/memberships.entity";
+import { User } from "src/entities/users.entity";
+import { CustomPublicHelpers } from "src/helpers/public";
+import { CustomUuid } from "src/utilities/uuid";
+import { DataSource } from "typeorm";
 
 export class MembershipsSeeder {
   static async up(dataSource: DataSource) {
@@ -19,26 +19,14 @@ export class MembershipsSeeder {
     chats.forEach((chat) => {
       let members: string[] = [];
       while (true) {
-        for (
-          let i = 0;
-          i < (chat.isGroup ? Math.floor(Math.random() * 3) + 3 : 2);
-          i++
-        ) {
+        for (let i = 0; i < (chat.isGroup ? Math.floor(Math.random() * 3) + 3 : 2); i++) {
           members.push(users[Math.floor(Math.random() * 10)].id);
         }
         if (CustomPublicHelpers.isArrayHasDuplicatedValue(members)) {
           members = [];
         }
 
-        if (
-          memberships.find((membership) =>
-            CustomPublicHelpers.isArraysEqual(
-              [...membership.members],
-              [...members],
-            ),
-          ) &&
-          !chat.isGroup
-        ) {
+        if (memberships.find((membership) => CustomPublicHelpers.isArraysEqual([...membership.members], [...members])) && !chat.isGroup) {
           members = [];
         }
 
@@ -58,14 +46,12 @@ export class MembershipsSeeder {
         });
       }
     }
-    console.log('✅ memberships seeded');
+    console.log("✅ memberships seeded");
   }
 
   static async down(dataSource: DataSource) {
-    await dataSource.query(
-      `TRUNCATE TABLE "memberships" RESTART IDENTITY CASCADE`,
-    );
-    console.log('✅ memberships removed');
-    console.log('test');
+    await dataSource.query(`TRUNCATE TABLE "memberships" RESTART IDENTITY CASCADE`);
+    console.log("✅ memberships removed");
+    console.log("test");
   }
 }

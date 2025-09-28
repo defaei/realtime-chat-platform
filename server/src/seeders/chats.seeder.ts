@@ -1,7 +1,7 @@
-import { Chat } from 'src/entities/chats.entity';
-import { User } from 'src/entities/users.entity';
-import { CustomUuid } from 'src/utilities/uuid';
-import { DataSource } from 'typeorm';
+import { Chat } from "src/entities/chats.entity";
+import { User } from "src/entities/users.entity";
+import { CustomUuid } from "src/utilities/uuid";
+import { DataSource } from "typeorm";
 
 export class ChatsSeeder {
   static async up(dataSource: DataSource) {
@@ -16,17 +16,15 @@ export class ChatsSeeder {
         return {
           id: CustomUuid.generateUuid(),
           isGroup,
-          ownerId: isGroup
-            ? users[Math.floor(Math.random() * 10)].id
-            : (null as any),
+          ownerId: isGroup ? users[Math.floor(Math.random() * 10)].id : (null as any),
         };
-      }),
+      })
     );
-    console.log('✅ chats seeded');
+    console.log("✅ chats seeded");
   }
 
   static async down(dataSource: DataSource) {
     await dataSource.query(`TRUNCATE TABLE "chats" RESTART IDENTITY CASCADE`);
-    console.log('✅ chats removed');
+    console.log("✅ chats removed");
   }
 }

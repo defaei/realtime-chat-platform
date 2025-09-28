@@ -1,19 +1,8 @@
-import { User } from 'src/entities/users.entity';
-import { CustomUuid } from 'src/utilities/uuid';
-import { DataSource } from 'typeorm';
+import { User } from "src/entities/users.entity";
+import { CustomUuid } from "src/utilities/uuid";
+import { DataSource } from "typeorm";
 
-const usersNames = [
-  'alice',
-  'bob',
-  'charlie',
-  'david',
-  'eve',
-  'frank',
-  'grace',
-  'henry',
-  'irene',
-  'jack',
-];
+const usersNames = ["alice", "bob", "charlie", "david", "eve", "frank", "grace", "henry", "irene", "jack"];
 
 export class UsersSeeder {
   static async up(dataSource: DataSource) {
@@ -24,13 +13,13 @@ export class UsersSeeder {
         id: CustomUuid.generateUuid(),
         username: name,
         email: `${name}@gmail.com`,
-      })),
+      }))
     );
-    console.log('✅ users seeded');
+    console.log("✅ users seeded");
   }
 
   static async down(dataSource: DataSource) {
     await dataSource.query(`TRUNCATE TABLE "users" RESTART IDENTITY CASCADE`);
-    console.log('✅ users removed');
+    console.log("✅ users removed");
   }
 }
