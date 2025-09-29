@@ -1,20 +1,11 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  OneToMany,
-  OneToOne,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { Message } from './messages.entity';
-import { Chat } from './chats.entity';
-import { Membership } from './memberships.entity';
-import { Profile } from './profiles.entity';
-import { Otp } from './otps.entity';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Message } from "./messages.entity";
+import { Chat } from "./chats.entity";
+import { Membership } from "./memberships.entity";
+import { Profile } from "./profiles.entity";
+import { Otp } from "./otps.entity";
 
-@Entity({ name: 'users' })
+@Entity({ name: "users" })
 export class User {
   @PrimaryColumn()
   id: string;
@@ -42,9 +33,6 @@ export class User {
 
   @OneToMany(() => Chat, (chat) => chat.owner)
   ownedChats: Chat[];
-
-  @OneToMany(() => Otp, (otp) => otp.user)
-  otps: Otp[];
 
   @OneToOne(() => Profile, (profile) => profile.user)
   profile: Profile;

@@ -9,6 +9,6 @@ export const TypeOrmDataSource = new DataSource({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
   entities: [process.cwd() + "/dist/entities/*.entity{.ts,.js}"],
-  migrations: [process.cwd() + "/dist/migrations/*.ts"],
+  migrations: [process.cwd() + "/dist/migrations/*{.ts,.js}"],
   synchronize: false,
 });
