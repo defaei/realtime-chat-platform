@@ -17,13 +17,13 @@ import { MailerModule } from "@nestjs-modules/mailer";
         },
       },
       defaults: {
-        from: '"Pooya 👋" <pooya.defaee.wwe@gmail.com>',
+        from: '"RealTime Chat Platform" <pooya.defaee.wwe@gmail.com>',
       },
       template: {
-        dir: process.cwd() + "/src" + "/templates", // where your .ejs files live
-        adapter: new EjsAdapter(), // EJS adapter
+        dir: process.cwd() + "/src" + "/templates",
+        adapter: new EjsAdapter(),
         options: {
-          strict: false, // set true if you want stricter parsing
+          strict: false,
         },
       },
     }),
